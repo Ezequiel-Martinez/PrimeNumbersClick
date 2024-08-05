@@ -1,6 +1,9 @@
 const primeDisplay = document.getElementById("prime-display");
+const timerDisplay = document.getElementById("timer");
 let primeIndex = 0;
 const primes = [2];
+let secondsElapsed = 0;
+let timerInterval = null;
 
 // Function to find the next prime number
 function findNextPrime(currentPrime) {
@@ -23,6 +26,24 @@ function isPrime(num) {
   return true;
 }
 
+// Update the timer display
+function updateTimer() {
+  secondsElapsed++;
+  const hours = Math.floor(secondsElapsed / 3600);
+  const minutes = Math.floor((secondsElapsed % 3600) / 60);
+  const seconds = secondsElapsed % 60;
+
+  // Format time as HH:MM:SS
+  const formattedTime =
+    String(hours).padStart(2, "0") +
+    ":" +
+    String(minutes).padStart(2, "0") +
+    ":" +
+    String(seconds).padStart(2, "0");
+
+  timerDisplay.textContent = formattedTime;
+}
+
 // Event listener for mouse clicks
 document.addEventListener("mousedown", (event) => {
   if (event.button === 0) {
@@ -36,6 +57,9 @@ document.addEventListener("mousedown", (event) => {
     if (primeIndex > 0) {
       primeIndex--;
     }
+  } else if (event.button === 1 && !timerInterval) {
+    // Middle click (button 1 in JavaScript)
+    timerInterval = setInterval(updateTimer, 1000);
   }
   primeDisplay.textContent = primes[primeIndex];
 });

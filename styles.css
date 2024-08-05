@@ -6,12 +6,22 @@ body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  position: relative;
 }
 
 #prime-display {
-  font-size: 25vw; /* Responsive font size based on viewport width */
+  font-size: 20vw; /* Responsive font size based on viewport width */
   color: white;
   user-select: none;
   text-align: center;
   line-height: 1; /* Adjust line height for better vertical centering */
+}
+
+#timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 5vw;
+  color: white;
+  user-select: none;
 }
